@@ -34,6 +34,19 @@ export class Tree {
 		this.#prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
 	}
 
+	includes(value) {
+		let root = this._root;
+		while (root) {
+			if (root.data == value)
+				return true;
+			if (value > root.data)
+				root = root.right;
+			else
+				root = root.left;
+		}
+		return false;
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
