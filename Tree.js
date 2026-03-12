@@ -156,6 +156,26 @@ export class Tree {
 		}
 	}
 
+	#heightRec(root) {
+		if (!root || (!root.left && !root.right))
+			return 0;
+		const leftHeight = this.#heightRec(root.left);
+		const rightHeight = this.#heightRec(root.right);
+		return 1+ Math.max(leftHeight, rightHeight);
+	}
+
+	height(value) {
+		if (!this.includes(value)) return undefined;
+		let target = this._root;
+		while(target.data != value){
+			if (value > target.data)
+				target = target.right;
+			else
+				target = target.left;
+		}
+		return this.#heightRec(target);
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
