@@ -100,6 +100,18 @@ export class Tree {
 		this.#deleteNode(this._root, value);
 	}
 
+	#levelOrderForEachRec(root, callback) {
+		if (!root) return ;
+		callback(root.data);
+		this.#levelOrderForEachRec(root.left, callback);
+		this.#levelOrderForEachRec(root.right, callback);
+	}
+
+	levelOrderForEach(callback){
+		if (!callback) throw "levelOrderForEach(callback): <expect callback function>";
+		this.#levelOrderForEachRec(this._root, callback)
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
