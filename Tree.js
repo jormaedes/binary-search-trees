@@ -125,6 +125,19 @@ export class Tree {
 		this.#inOrderForEachRec(this._root, callback);
 	}
 
+	#postOrderForEachRec(root, callback)
+	{
+		if (!root) return ;
+		this.#postOrderForEachRec(root.left, callback);
+		this.#postOrderForEachRec(root.right, callback);
+		callback(root.data);
+	}
+
+	postOrderForEach(callback) {
+		if (!callback) throw "postOrderForEach(callback): <expect callback function>";
+		this.#postOrderForEachRec(this._root, callback);
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
