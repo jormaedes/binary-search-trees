@@ -69,6 +69,37 @@ export class Tree {
 		}
 	}
 
+	#nearest(root) {
+		let near = root.left;
+		while(near.right){
+			near = near.right;
+		}
+		return near;
+	}
+
+	#deleteNode(root, value) {
+		if (root.data == value) {
+			if (!root.left && !root.right) return null;
+			if (!root.left) return root.right;
+			if (!root.right) return root.left;
+			let near = this.#nearest(root);
+			let aux = near.data;
+			this.#deleteNode(root, near.data);
+			root.data = aux;
+			return (root);
+		}
+		if (value > root.data)
+			root.right = this.#deleteNode(root.right, value);
+		else
+			root.left = this.#deleteNode(root.left, value);
+		return root;
+	}
+
+	deleteItem(value) {
+		if (!this.includes(value)) return ;
+		this.#deleteNode(this._root, value);
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
