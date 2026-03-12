@@ -47,6 +47,28 @@ export class Tree {
 		return false;
 	}
 
+	insert(value) {
+		if (this.includes(value)) return;
+		const newNode = new Node(value);
+		let root = this._root;
+		while (root) {
+			if (value > root.data) {
+				if (root.right == null) {
+					root.right = newNode;
+					return;
+				}
+				root = root.right;
+			}
+			else {
+				if (root.left == null) {
+					root.left = newNode;
+					return;
+				}
+				root = root.left;
+			}
+		}
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
