@@ -190,6 +190,20 @@ export class Tree {
 		return edges;
 	}
 
+	#toArray(root, arr) {
+		if (!root) return ;
+		this.#toArray(root.left, arr);
+		arr.push(root.data);
+		this.#toArray(root.right, arr);
+	}
+
+	rebalance() {
+		if (!this._root) return;
+		const arr = [];
+		this.#toArray(this._root, arr);
+		this._root = this._buildTree(arr);
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
