@@ -204,6 +204,20 @@ export class Tree {
 		this._root = this._buildTree(arr);
 	}
 
+	#isBalancedRec(root) {
+		if (!root) return 0;
+		const leftH = this.#isBalancedRec(root.left);
+		if (leftH < 0) return -1;
+		const rightH = this.#isBalancedRec(root.right);
+		if (rightH < 0) return -1;
+		if (Math.abs(leftH - rightH) > 1) return -1;
+		return 1 + Math.max(leftH, rightH);
+	}
+
+	isBalanced() {
+		return this.#isBalancedRec(this._root) != -1;
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
