@@ -138,6 +138,19 @@ export class Tree {
 		this.#postOrderForEachRec(this._root, callback);
 	}
 
+	levelOrderForEach(callback) {
+		if (!callback) throw "levelOrderForEach(callback): <expect callback function>";
+		const queue = [this._root];
+		while (queue.length > 0) {
+			const currentNode = queue.shift();
+			callback(currentNode.data);
+			if (currentNode.left)
+				queue.push(currentNode.left);
+			if (currentNode.right)
+				queue.push(currentNode.right);
+		}
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
