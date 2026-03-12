@@ -37,7 +37,7 @@ export class Tree {
 	includes(value) {
 		let root = this._root;
 		while (root) {
-			if (root.data == value)
+			if (root.data === value)
 				return true;
 			if (value > root.data)
 				root = root.right;
@@ -82,7 +82,7 @@ export class Tree {
 	}
 
 	#deleteNode(root, value) {
-		if (root.data == value) {
+		if (root.data === value) {
 			if (!root.left && !root.right) return null;
 			if (!root.left) return root.right;
 			if (!root.right) return root.left;
