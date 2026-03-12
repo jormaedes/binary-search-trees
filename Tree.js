@@ -112,7 +112,7 @@ export class Tree {
 	}
 
 	preOrderForEach(callback) {
-		if (!callback) throw "preOrderForEach(callback): <expect callback function>";
+		if (!callback) throw new Error("preOrderForEach(callback): <expect callback function>");
 		this.#preOrderForEachREC(this._root, callback)
 	}
 
@@ -125,7 +125,7 @@ export class Tree {
 	}
 
 	inOrderForEach(callback) {
-		if (!callback) throw "inOrderForEach(callback): <expect callback function>";
+		if (!callback) throw new Error("inOrderForEach(callback): <expect callback function>");
 		this.#inOrderForEachRec(this._root, callback);
 	}
 
@@ -138,12 +138,12 @@ export class Tree {
 	}
 
 	postOrderForEach(callback) {
-		if (!callback) throw "postOrderForEach(callback): <expect callback function>";
+		if (!callback) throw new Error("postOrderForEach(callback): <expect callback function>");
 		this.#postOrderForEachRec(this._root, callback);
 	}
 
 	levelOrderForEach(callback) {
-		if (!callback) throw "levelOrderForEach(callback): <expect callback function>";
+		if (!callback) throw new Error("levelOrderForEach(callback): <expect callback function>");
 		if (!this._root) return;
 		const queue = [this._root];
 		while (queue.length > 0) {
