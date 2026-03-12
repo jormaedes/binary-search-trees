@@ -176,6 +176,20 @@ export class Tree {
 		return this.#heightRec(target);
 	}
 
+	depth(value) {
+		if (!this.includes(value)) return undefined;
+		let target = this._root;
+		let edges = 0;
+		while(target.data != value){
+			if (value > target.data)
+				target = target.right;
+			else
+				target = target.left;
+			edges++;
+		}
+		return edges;
+	}
+
 	printTree() {
 		this.#prettyPrint(this._root);
 	}
