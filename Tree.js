@@ -100,16 +100,16 @@ export class Tree {
 		this.#deleteNode(this._root, value);
 	}
 
-	#levelOrderForEachRec(root, callback) {
+	#preOrderForEachREC(root, callback) {
 		if (!root) return ;
 		callback(root.data);
-		this.#levelOrderForEachRec(root.left, callback);
-		this.#levelOrderForEachRec(root.right, callback);
+		this.#preOrderForEachREC(root.left, callback);
+		this.#preOrderForEachREC(root.right, callback);
 	}
 
-	levelOrderForEach(callback){
-		if (!callback) throw "levelOrderForEach(callback): <expect callback function>";
-		this.#levelOrderForEachRec(this._root, callback)
+	preOrderForEach(callback) {
+		if (!callback) throw "preOrderForEach(callback): <expect callback function>";
+		this.#preOrderForEachREC(this._root, callback)
 	}
 
 	#inOrderForEachRec(root, callback)
