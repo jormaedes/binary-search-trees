@@ -50,6 +50,10 @@ export class Tree {
 	insert(value) {
 		if (this.includes(value)) return;
 		const newNode = new Node(value);
+		if (this._root == null) {
+			this._root = newNode;
+			return ;
+		}
 		let root = this._root;
 		while (root) {
 			if (value > root.data) {
@@ -97,7 +101,7 @@ export class Tree {
 
 	deleteItem(value) {
 		if (!this.includes(value)) return ;
-		this.#deleteNode(this._root, value);
+		this._root = this.#deleteNode(this._root, value);
 	}
 
 	#preOrderForEachREC(root, callback) {
@@ -140,6 +144,7 @@ export class Tree {
 
 	levelOrderForEach(callback) {
 		if (!callback) throw "levelOrderForEach(callback): <expect callback function>";
+		if (!this._root) return;
 		const queue = [this._root];
 		while (queue.length > 0) {
 			const currentNode = queue.shift();
